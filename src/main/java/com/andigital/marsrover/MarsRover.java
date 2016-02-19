@@ -33,10 +33,8 @@ public final class MarsRover {
     private void executeSingleCommand(Command command) {
         switch (command) {
             case L:
-                turn(Command.L);
-                break;
             case R:
-                turn(Command.R);
+                turn(command);
                 break;
             case M:
                 move();
