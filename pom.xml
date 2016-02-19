@@ -13,7 +13,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.compiler.version>1.8</java.compiler.version>
 
-		<junit.version>4.12</junit.version>
+        <commons.collections.version>3.2.2</commons.collections.version>
+        <junit.version>4.12</junit.version>
+        <testng.version>6.9.10</testng.version>
 	</properties>
 	
 	<build>
@@ -27,55 +29,20 @@
 					<target>${java.compiler.version}</target>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<executions>
-		            <execution>
-		              	<id>generate-docs-jar</id>
-		              	<goals>
-			                <goal>jar</goal>
-		              	</goals>
-	            	</execution>
-	            </executions>
-			</plugin>
-
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>java</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<mainClass>com.andigital.Application</mainClass>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
 	
 	<dependencies>
+        <dependency>
+            <groupId>commons-collections</groupId>
+            <artifactId>commons-collections</artifactId>
+            <version>${commons.collections.version}</version>
+        </dependency>
+        <!-- Testing dependencies -->
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
