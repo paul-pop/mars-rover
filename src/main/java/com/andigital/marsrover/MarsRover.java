@@ -21,6 +21,11 @@ public final class MarsRover {
      * @param commandString multiple command string
      */
     public void execute(String commandString) {
+        if (commandString == null) {
+            throw new IllegalArgumentException("Invalid command was received");
+        }
+
+        // Loop through the characters in the command string
         for (char command : commandString.toCharArray()) {
             executeSingleCommand(Command.valueOf(valueOf(command)));
         }
@@ -39,8 +44,6 @@ public final class MarsRover {
             case M:
                 move();
                 break;
-            default:
-                throw new IllegalArgumentException("Invalid command was received");
         }
     }
 

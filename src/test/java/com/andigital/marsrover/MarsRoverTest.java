@@ -24,6 +24,26 @@ public class MarsRoverTest {
         rover.setBounds(bounds);
     }
 
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void whenRoverReceivesNullCommandThenThrowException() {
+        rover.setCoordinates(new Coordinates(0, 0));
+        rover.setDirection(Direction.N);
+
+        rover.execute(null);
+
+        fail(); // should not get here
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void whenRoverReceivesInvalidCommandThenThrowException() {
+        rover.setCoordinates(new Coordinates(0, 0));
+        rover.setDirection(Direction.W);
+
+        rover.execute("X");
+
+        fail(); // should not get here
+    }
+
     @Test(expectedExceptions = RoverOutOfBoundsException.class)
     public void whenRoverMovesOutOfBoundsThrowException() {
         rover.setCoordinates(new Coordinates(0, 0));
@@ -42,6 +62,17 @@ public class MarsRoverTest {
         rover.execute("RMMMMMM"); // turn R, then move 6 steps in the same direction (bound is 5,5)
 
         fail(); // should not get here
+    }
+
+    @Test
+    public void whenRoverDoesNotReceiveCommandsStayStill() {
+        rover.setCoordinates(new Coordinates(0, 0));
+        rover.setDirection(Direction.W);
+
+        rover.execute("");
+
+        assertEquals(new Coordinates(0, 0), rover.getCoordinates());
+        rover.setDirection(Direction.W);
     }
 
     @Test
